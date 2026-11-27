@@ -6,6 +6,7 @@ const AGENCY_EMAIL = 'fourcoredigital@gmail.com';
 const SALON_URL = 'https://salon-demo-taupe.vercel.app';
 const CAFE_URL = 'https://cafe-demo-rho-self.vercel.app/';
 const HOSPITAL_URL = 'https://hospital-demo-wine.vercel.app/';
+const JEWELLERY_URL = 'https://jewellery-shop-demo-zeta.vercel.app/';
 
 // Optional: Paste a free Web3Forms Access Key linked to fourcoredigital@gmail.com
 // (same instant engine used by the café demo). If left blank, FormSubmit is used.
@@ -179,6 +180,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('previewHospitalBtn').addEventListener('click', () => {
         openDemoPreview("Women's Hospital & Clinic Website", HOSPITAL_URL);
+    });
+
+    document.getElementById('copyJewelleryBtn').addEventListener('click', function () {
+        copyLink(JEWELLERY_URL, this);
+    });
+
+    document.getElementById('previewJewelleryBtn').addEventListener('click', () => {
+        openDemoPreview("Jewellery Showroom & Collection Website", JEWELLERY_URL);
     });
 
     // Star rating selector
