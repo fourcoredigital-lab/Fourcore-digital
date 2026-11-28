@@ -12,27 +12,6 @@ const JEWELLERY_URL = 'https://jewellery-shop-demo-zeta.vercel.app/';
 // (same instant engine used by the café demo). If left blank, FormSubmit is used.
 const WEB3FORMS_ACCESS_KEY = '007204d4-fdde-4fc0-a6e0-f0b86933b027';
 
-const initialReviews = [
-    {
-        name: 'Meera Joshi',
-        role: 'Salon Owner • Sample Review',
-        rating: 5,
-        comment: 'Clients easily check our services on their phones and book appointments without confusion. Clean layout and fast loading.'
-    },
-    {
-        name: 'Aarav Mehta',
-        role: 'Café Owner • Sample Review',
-        rating: 5,
-        comment: 'The menu filter and table ordering tray are simple for guests to use, and order messages go straight to email.'
-    },
-    {
-        name: 'Chirag Patel',
-        role: 'Local Business Owner • Sample Review',
-        rating: 5,
-        comment: 'Clear communication, easy-to-read pages, and quick turnaround from the FourCore Digital team.'
-    }
-];
-
 function escapeText(text) {
     const span = document.createElement('span');
     span.textContent = text;
@@ -50,9 +29,12 @@ function renderReviews() {
         savedReviews = [];
     }
 
-    const allReviews = [...savedReviews, ...initialReviews];
+    if (!savedReviews.length) {
+        container.innerHTML = '';
+        return;
+    }
 
-    container.innerHTML = allReviews.map((item) => {
+    container.innerHTML = savedReviews.map((item) => {
         const initials = item.name
             .split(' ')
             .filter(Boolean)
@@ -65,11 +47,11 @@ function renderReviews() {
         ).join('');
 
         return `
-            <div class="col-md-4">
-                <div class="fc-review-card h-100 d-flex flex-column justify-content-between">
+            <div class="col-md-6">
+                <div class="fc-card p-4 h-100 d-flex flex-column justify-content-between">
                     <div>
                         <div class="mb-2">${stars}</div>
-                        <p class="text-muted small mb-4">"${escapeText(item.comment)}"</p>
+                        <p class="text-dark small mb-4">"${escapeText(item.comment)}"</p>
                     </div>
                     <div class="d-flex align-items-center gap-3 pt-3 border-top">
                         <span class="fc-avatar">${escapeText(initials || 'FC')}</span>
